@@ -59,12 +59,27 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   const todayTiming = schedule.find(s => s.day === today) || schedule[0];
   const otherTimings = schedule.filter(s => s.day !== today);
 
-  const handleShare = () => {
-    if (idea.google_maps_link) {
-      navigator.clipboard.writeText(idea.google_maps_link).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      });
+  const handleShare = async () => {
+    const shareData = {
+      title: idea.activity,
+      text: `Check out this date idea: ${idea.activity} in ${idea.area}!`,
+      url: idea.google_maps_link || window.location.href,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        throw new Error('Web Share not supported');
+      }
+    } catch (err) {
+      // Fallback to clipboard
+      if (idea.google_maps_link) {
+        navigator.clipboard.writeText(idea.google_maps_link).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        });
+      }
     }
   };
 

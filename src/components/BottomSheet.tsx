@@ -216,22 +216,22 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
                 <button
                   onClick={() => onToggleSave(idea)}
                   className={cn(
-                    "flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-[13px] font-semibold transition-all duration-200",
+                    "flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-[11px] font-bold uppercase tracking-tight transition-all duration-200",
                     isSaved
                       ? "bg-[#4A1D96] text-white"
                       : "border-2 border-[#4A1D96] text-[#4A1D96] hover:bg-[#4A1D96]/5"
                   )}
                 >
-                  <Bookmark size={18} fill={isSaved ? "currentColor" : "none"} />
-                  {isSaved ? "Saved" : "Save"}
+                  <Bookmark size={16} fill={isSaved ? "currentColor" : "none"} />
+                  {isSaved ? "Saved" : "Save for Later"}
                 </button>
                 
                 <button 
                   onClick={handleShare}
-                  className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl text-[13px] font-semibold border-2 border-gray-200 text-gray-600 hover:border-gray-300 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-xl text-[11px] font-bold uppercase tracking-tight border-2 border-gray-200 text-gray-600 hover:border-gray-300 transition-colors"
                 >
-                  <Share2 size={18} />
-                  <span className="truncate">{copied ? "Copied!" : "Share"}</span>
+                  <Share2 size={16} />
+                  <span className="truncate">{copied ? "Copied!" : "Share with Partner"}</span>
                 </button>
               </div>
             </div>
